@@ -17,6 +17,11 @@ server {
 
     server_name brewdomain.org home.brewdomain.org 45.32.89.196 _;
 
+	   # Check if the user agent is marked as bad
+    if ($bad_bot) {
+        return 444; # Drops Connection Better than a 404 to conserve resources
+    }
+
     root /var/www/brewdomain.org;
     index index.html;
 
